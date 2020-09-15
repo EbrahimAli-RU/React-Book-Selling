@@ -1,0 +1,96 @@
+.SearchBox {
+    height: 50px;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: sticky;
+    /* top: 0px; */
+}
+.SearchBox input {
+    width: 78%;
+    height: 65%;
+    padding: 0 10px;
+    border-top: 2px solid red;
+    border-left: 2px solid red;
+    border-bottom: 2px solid red;
+    border-right: none;
+    /* border-radius: 5px; */
+    outline: none;
+    font-size: 16px;
+}
+
+.Searchbtn {
+    cursor: pointer;
+    height: 65%;
+    display: flex;
+    text-decoration: none;
+    color: white;
+    background-color: gold;
+    border-top: 2px solid red;
+    border-right: 2px solid red;
+    border-bottom: 2px solid red;
+    padding: 0 8px;
+    outline: none;
+    /* border: none; */
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width:500px) {
+    .Header p {
+        display: none;
+    }
+    .SearchBox {
+        display: none;
+    }
+}
+
+@media (max-width:720px) {
+    .gg {
+        display: none;
+    }
+}
+@media (max-width:1090px) {
+    #SellBook {
+        display: none;
+    }
+}
+
+@media (min-width: 1091px) {
+    .SearchBox1 input {
+        width: 85%;
+    }
+    .Header button {
+        margin-right: 3%;
+    }
+}
+
+@media (max-width:840px) {
+    .Header button {
+        display: none;
+    }
+}
+
+@media (min-width:841px) and (max-width:1090px) {
+    .SearchBox1 {
+        width: 660px;
+    }
+
+}
+@media (min-width:841px) {  
+    #User {
+        display: none;
+    }
+}
+
+@media (max-width: 499px) {
+    .Header {
+        justify-content: space-between;
+    }
+    .SearchBox1 {
+        display: none;
+    }
+}

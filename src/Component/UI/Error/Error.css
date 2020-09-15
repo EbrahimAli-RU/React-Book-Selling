@@ -1,0 +1,32 @@
+.Error {
+    top: 4vh;
+    left: 30%;
+    background-color: rgb(49, 48, 48);
+    width: 40%;
+    min-height: 4vh;
+    position: absolute;
+    z-index: 600;
+    border-radius: 8px;
+    transition: transform .5s;
+}
+
+.Error p {
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* .Open {
+    transform: translateY(0vh);
+}
+
+.Close {
+    transform: translateY(-100vh);
+} */
+
+@media (max-width: 450px) {
+    .Error {
+        width: 80%;
+        left: 10%;
+    }
+}

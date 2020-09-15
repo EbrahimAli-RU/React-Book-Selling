@@ -1,0 +1,12 @@
+.CoverPhoto {
+    width: 80%;
+    height: 46%;
+    background-color: red;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.CoverPhoto img {
+    width: 100%;
+    height: 100%;
+}

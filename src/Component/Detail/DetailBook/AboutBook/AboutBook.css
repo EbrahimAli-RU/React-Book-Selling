@@ -1,0 +1,20 @@
+.AboutBook {
+    width: 35%;
+    height: inherit;
+    background-color: white;
+    float: left;
+}
+
+@media(min-width:600px) and (max-width:900px) {
+    .AboutBook {
+      width: 50%;
+      height: 90vh;
+    }
+  }
+
+  @media (max-width:599px) {
+    .AboutBook {
+        height: 50vh;
+        width: 100%;
+    }
+  }

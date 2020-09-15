@@ -1,0 +1,30 @@
+[0813/193646.169:ERROR:process_info.cc(359)] UncheckedAllocate
+[0815/015047.032:ERROR:process_info.cc(359)] UncheckedAllocate
+[0815/015047.033:ERROR:process_info.cc(359)] UncheckedAllocate
+[0815/015047.078:ERROR:process_info.cc(359)] UncheckedAllocate
+[0815/015047.164:ERROR:process_info.cc(359)] UncheckedAllocate
+[0815/015047.166:ERROR:process_info.cc(359)] UncheckedAllocate
+[0815/015047.166:ERROR:process_info.cc(359)] UncheckedAllocate
+[0815/015227.101:ERROR:process_info.cc(359)] UncheckedAllocate
+[0818/075107.068:ERROR:process_info.cc(359)] UncheckedAllocate
+[0818/135827.738:ERROR:process_info.cc(359)] UncheckedAllocate
+[0818/161831.469:ERROR:process_info.cc(359)] UncheckedAllocate
+[0819/091832.631:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0819/091832.863:ERROR:exception_snapshot_win.cc(98)] thread ID 11780 not found in process
+[0819/091832.863:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)
+[0822/204831.124:ERROR:process_info.cc(359)] UncheckedAllocate
+[0822/222024.603:ERROR:process_info.cc(359)] UncheckedAllocate
+[0822/223140.766:ERROR:process_info.cc(359)] UncheckedAllocate
+[0822/224040.163:ERROR:process_info.cc(359)] UncheckedAllocate
+[0822/225519.349:ERROR:process_info.cc(359)] UncheckedAllocate
+[0822/225519.486:ERROR:process_info.cc(359)] UncheckedAllocate
+[0822/225524.797:ERROR:process_info.cc(359)] UncheckedAllocate
+[0822/225536.160:ERROR:process_info.cc(359)] UncheckedAllocate
+[0822/225548.791:ERROR:process_info.cc(359)] UncheckedAllocate
+[0822/225622.006:ERROR:process_info.cc(359)] UncheckedAllocate
+[0823/225423.118:ERROR:process_info.cc(359)] UncheckedAllocate
+[0823/225424.867:ERROR:process_info.cc(359)] UncheckedAllocate
+[0824/142816.017:ERROR:process_info.cc(359)] UncheckedAllocate
+[0824/221443.397:ERROR:process_info.cc(359)] UncheckedAllocate
+[0825/222320.371:ERROR:process_info.cc(359)] UncheckedAllocate
+[0829/163334.580:ERROR:process_info.cc(359)] UncheckedAllocate

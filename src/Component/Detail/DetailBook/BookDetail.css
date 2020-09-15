@@ -1,0 +1,16 @@
+.BookDetail {
+    background-color: rgb(190, 190, 190);
+    height: 90vh;
+}
+
+@media(min-width:600px) and (max-width:900px) {
+    .BookDetail {
+      height: 140vh;
+    }
+  }
+
+  @media(max-width:599px) {
+    .BookDetail {
+      height: 150vh;
+    }
+  }

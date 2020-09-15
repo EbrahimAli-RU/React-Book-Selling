@@ -1,8 +1,11 @@
 import React from 'react'
 
-const Modal = () => (
-    <div>
-        
+import Classes from './Modal.css'
+const Modal = (props) => (
+    
+    <div className={Classes.Modal} style={{
+        transform: props.show ? 'translateX(0)' : 'translateX(-100vh)',
+        opacity: props.show ? '1' : '0'}}>
     </div>
 )
 

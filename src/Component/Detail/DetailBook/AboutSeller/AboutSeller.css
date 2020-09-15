@@ -1,0 +1,21 @@
+.AboutSeller {
+    width: 35%;
+    height: inherit;
+    background-color: white;
+    float: left;
+}
+
+@media(min-width:600px) and (max-width:900px) {
+    .AboutSeller {
+      width: 100%;
+      height: 400px;
+      display: block;
+    }
+  }
+
+  @media (max-width:599px) {
+    .AboutSeller {
+        height: 50vh;
+        width: 100%;
+    }
+  }

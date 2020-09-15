@@ -1,0 +1,25 @@
+.NoDataFound {
+    width: 100%;
+    /* min-height: 60vh; */
+    /* height: 80%; */
+    /* height: 80vh; */
+    min-width: 250px;
+    z-index: 150;
+    box-sizing: border-box;
+}
+
+.NoDataFound h2 {
+    padding-top: 20vh;
+    font-size: 50px;
+    /* padding-left: 30%; */
+    text-align: center;
+    box-sizing: border-box;
+}
+
+@media (max-width:450px) {
+    .NoDataFound h2 {
+        /* padding-left: 15%; */
+        
+        font-size: 25px;
+    }
+}
