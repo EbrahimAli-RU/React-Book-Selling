@@ -16,7 +16,12 @@ class SignIn extends Component {
                     type: 'text',
                     placeholder: 'Your Phone number'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false,
+                isTouched: false
             },
             password: {
                 elementType: 'input',
@@ -24,9 +29,27 @@ class SignIn extends Component {
                     type: 'password',
                     placeholder: 'password'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true,
+                    minLength:8
+                },
+                valid: false
             }
+        },
+        isDisabled: false
+    }
+
+    checkValidity = (value, rules) => {
+        let isvalid = false;
+        if(rules.required) {
+            isvalid = value.trim() !== ''
         }
+        if(rules.minLength) {
+            isvalid = value.length >= 8;
+        }
+        
+        return isvalid
     }
 
     SubmitHandler = (e) => {
@@ -50,15 +73,18 @@ class SignIn extends Component {
 
     inputHandler = (e, inputIdentifyer) =>{
         const UpdatedSignInForm = { ...this.state.SignInForm };
-        const UpdatedSignupElement ={
+        const UpdatedSigninElement ={
             ...UpdatedSignInForm[inputIdentifyer]
         }
-        UpdatedSignupElement.value = e.target.value
-        console.log(e.target.value)
-        UpdatedSignInForm[inputIdentifyer] = UpdatedSignupElement;
-        this.setState({ SignInForm: UpdatedSignInForm })
+        UpdatedSigninElement.value = e.target.value
+        // const [isValid, isDis] = this.checkValidity(UpdatedSigninElement.value, UpdatedSigninElement.validation)
+        UpdatedSigninElement.valid =  this.checkValidity(UpdatedSigninElement.value, UpdatedSigninElement.validation)
+        UpdatedSigninElement.isTouched = true;
+        UpdatedSignInForm[inputIdentifyer] = UpdatedSigninElement;
+        console.log(UpdatedSignInForm)
+        this.setState({ SignInForm: UpdatedSignInForm})
     }
-    
+
     render() {
         let FormElementArray = [];
         for( let key in this.state.SignInForm) {
@@ -73,7 +99,9 @@ class SignIn extends Component {
                 key={el.id}
                 userInput={(event) => this.inputHandler(event, el.id)}
                 elementType={el.config.elementType} 
-                elementConfig={el.config.elementConfig} 
+                elementConfig={el.config.elementConfig}
+                Invalid={el.config.valid} 
+                Touched={el.config.isTouched}
                 value={el.config.value}/>)
         })
         return (
@@ -91,10 +119,8 @@ class SignIn extends Component {
                 }}><i>Wellcome Back</i></h2>
                 <form onSubmit={this.SubmitHandler}>
                     {Form}
-                    {/* <Input inputtype="input" type="number" placeholder="Your Phone Number" />
-                    <Input inputtype="input" type="password" placeholder="Password" /> */}
                     <Link className={Classes.ForgotPassword} to="/forgot-password">Forgot Password?</Link>
-                    <SubmitButton name="Log In" />
+                    <SubmitButton name="Log In" Checkdisibility={this.state.isDisabled}/>
                     <Link className={Classes.Wraper} to="/SignUp">Don't have account? Create one</Link>
                 </form>
                 </div>
@@ -103,6 +129,6 @@ class SignIn extends Component {
     }
 
 }
-
+//Checkdisibility={this.state.isDisabled}
 
 export default SignIn

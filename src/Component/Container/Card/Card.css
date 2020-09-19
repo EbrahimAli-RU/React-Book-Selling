@@ -15,7 +15,7 @@
 } 
 
 .Card:hover {
-    opacity: .8
+    /* opacity: .8 */
 }
 
 .WishList {
@@ -59,14 +59,15 @@
    }
 }
 
-@media (min-width:451px) and  (max-width:650Px) {
+
+/* @media (min-width:451px) and  (max-width:650Px) {
     .Card {
      width: 33%;
      margin: 16px 0 8px;
      border: none;
      box-sizing: border-box;
     }
- }
+ } */
 
 /* @media (min-width:450px) {
     .Card {

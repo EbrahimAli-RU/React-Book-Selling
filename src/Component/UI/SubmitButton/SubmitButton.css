@@ -18,3 +18,8 @@
     border: none;
     outline: none;
 }
+
+.SubmitButton:disabled {
+    cursor: not-allowed;
+    box-shadow: none;
+}
