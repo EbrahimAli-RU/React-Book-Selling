@@ -5,9 +5,9 @@ import Card from './Card/Card'
 import NoDataFound from './NoDataFound/NoDataFound'
 
 class Container extends Component {
-    state = {
-        slug: null
-    }
+    // state = {
+    //     slug: null
+    // }
 
     openDetailPage = (id) => {
         // axios.get(`book/${id}`).then(response => {

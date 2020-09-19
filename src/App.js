@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 
-import Layout from './Component/Layout/Layout' 
-import Detail from './Component/Detail/Detail'
-import SignIn from './Component/SignIn/Signin'
-import SignUp from './Component/SignUp/SignUp'
+import Layout from './Container/Layout/Layout' 
+import Detail from './Container/BookDetail/Detail'
+import SignIn from './Container/SignIn/Signin'
+import SignUp from './Container/SignUp/SignUp'
 
 class App extends Component {
   render() {
