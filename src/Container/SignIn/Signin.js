@@ -18,7 +18,8 @@ class SignIn extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: true,
+                    length: 11
                 },
                 valid: false,
                 isTouched: false
@@ -37,7 +38,7 @@ class SignIn extends Component {
                 valid: false
             }
         },
-        isDisabled: false
+        isDisabled: true
     }
 
     checkValidity = (value, rules) => {
@@ -47,6 +48,9 @@ class SignIn extends Component {
         }
         if(rules.minLength) {
             isvalid = value.length >= 8;
+        }
+        if(rules.length) {
+            isvalid = value.length === 11 && value.startsWith('01')
         }
         
         return isvalid
@@ -58,16 +62,14 @@ class SignIn extends Component {
         for(let key in this.state.SignInForm) {
             formData[key] = this.state.SignInForm[key].value
         }
-
-        console.log(formData)
         axios.post('/user/signin',{...formData}, {
             headers: {
                 contentType: 'application/json' 
             }
         }).then(res => {
-            console.log(formData)
+            this.props.history.push("/")
         }).catch(err => {
-            console.log(formData)
+            alert(err.response.data.message)
         })
     }
 
@@ -77,12 +79,19 @@ class SignIn extends Component {
             ...UpdatedSignInForm[inputIdentifyer]
         }
         UpdatedSigninElement.value = e.target.value
-        // const [isValid, isDis] = this.checkValidity(UpdatedSigninElement.value, UpdatedSigninElement.validation)
         UpdatedSigninElement.valid =  this.checkValidity(UpdatedSigninElement.value, UpdatedSigninElement.validation)
         UpdatedSigninElement.isTouched = true;
         UpdatedSignInForm[inputIdentifyer] = UpdatedSigninElement;
-        console.log(UpdatedSignInForm)
         this.setState({ SignInForm: UpdatedSignInForm})
+        const isDis = this.Checkdisibility(UpdatedSignInForm);
+        this.setState({ isDisabled: isDis})
+    }
+    Checkdisibility (g) {
+        let isDis = true;
+        if(g.phone.valid && g.password.valid) {
+            isDis = false;
+        }
+        return isDis;
     }
 
     render() {
@@ -129,6 +138,5 @@ class SignIn extends Component {
     }
 
 }
-//Checkdisibility={this.state.isDisabled}
 
 export default SignIn

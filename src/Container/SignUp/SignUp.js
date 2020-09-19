@@ -13,7 +13,12 @@ class SignUp extends Component {
                     type: 'text',
                     placeholder: 'First name'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                isTouched: false
             },
             lastName: {
                 elementType: 'input',
@@ -29,7 +34,13 @@ class SignUp extends Component {
                     type: 'text',
                     placeholder: 'Your Phone number'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true,
+                    length: 11
+                },
+                valid: false,
+                isTouched: false
             },
             password: {
                 elementType: 'input',
@@ -37,7 +48,12 @@ class SignUp extends Component {
                     type: 'password',
                     placeholder: 'password'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true,
+                    minLength:8
+                },
+                valid: false
             },
             confirmPassword: {
                 elementType: 'input',
@@ -45,9 +61,30 @@ class SignUp extends Component {
                     type: 'password',
                     placeholder: 'Confirm Password'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true,
+                    minLength:8
+                },
+                valid: false
             }
+        },
+        isDisabled: true
+    }
+
+    checkValidity = (value, rules) => {
+        let isvalid = false;
+        if(rules.required) {
+            isvalid = value.trim() !== ''
         }
+        if(rules.minLength) {
+            isvalid = value.length >= 8;
+        }
+        if(rules.length) {
+            isvalid = value.length === 11 && value.startsWith('01')
+        }
+        
+        return isvalid
     }
 
     SubmitHandler = (e) => {
@@ -56,12 +93,6 @@ class SignUp extends Component {
         for(let key in this.state.SignUpForm) {
             formData[key] = this.state.SignUpForm[key].value
         }
-        // axios.post('/user/signup', formData).then(response => {
-        //     console.log(formData)
-        // }).catch( err => {
-        //     console.log(formData)
-        //     console.log(err)
-        // })
         axios.post('/user/signup',{...formData},{
             headers: {
                 contentType: 'application/json' 
@@ -70,10 +101,8 @@ class SignUp extends Component {
             if(res.data.status === "success") {
                 this.props.history.push("/")
             }
-            console.log(res)
         }).catch(err => {
             alert(err.response.data.message)
-            console.log(this.props)
         })
     }
 
@@ -83,9 +112,21 @@ class SignUp extends Component {
             ...UpdatedSignupForm[inputIdentifyer]
         }
         UpdatedSignupElement.value = e.target.value
+        UpdatedSignupElement.valid =  this.checkValidity(UpdatedSignupElement.value, UpdatedSignupElement.validation)
+        UpdatedSignupElement.isTouched = true;
         UpdatedSignupForm[inputIdentifyer] = UpdatedSignupElement;
         this.setState({ SignUpForm: UpdatedSignupForm })
+        const isDis = this.Checkdisibility(UpdatedSignupForm);
+        this.setState({ isDisabled: isDis})
         // this.setState({ SignUpForm: UpdatedSignupForm})
+    }
+
+    Checkdisibility (g) {
+        let isDis = true;
+        if(g.phone.valid && g.password.valid && g.password.valid && g.confirmPassword.valid) {
+            isDis = false;
+        }
+        return isDis;
     }
     render() {
         let FormElementArray = [];
@@ -101,7 +142,9 @@ class SignUp extends Component {
                 key={el.id}
                 userInput={(event) => this.inputHandler(event, el.id)}
                 elementType={el.config.elementType} 
-                elementConfig={el.config.elementConfig} 
+                elementConfig={el.config.elementConfig}
+                Invalid={el.config.valid} 
+                Touched={el.config.isTouched} 
                 value={el.config.value}/>)
         })
         return(
@@ -119,7 +162,7 @@ class SignUp extends Component {
                 }}><i>Wellcome</i></h2>
                 <form onSubmit={this.SubmitHandler}>
                     {Form}
-                    <SubmitButton name="Sign Up"/>
+                    <SubmitButton name="Sign Up" Checkdisibility={this.state.isDisabled}/>
                 </form>
                 </div>
             </div>
