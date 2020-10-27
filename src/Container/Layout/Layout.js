@@ -40,6 +40,7 @@ class Layout extends Component {
             .then(response => {
                 this.setState({list: response.data.data.books, isFound: true })
             }).catch(err => {
+                console.log(err.response)
                 console.log('Error')
             })
     }
