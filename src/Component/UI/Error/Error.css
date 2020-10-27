@@ -1,13 +1,30 @@
 .Error {
-    top: 4vh;
+    top: -100%;
     left: 30%;
-    background-color: rgb(49, 48, 48);
+    background-color: #bb2124;
     width: 40%;
     min-height: 4vh;
     position: absolute;
     z-index: 600;
     border-radius: 8px;
     transition: transform .5s;
+    animation-name: error;
+    animation-duration: 2s;
+}
+
+@keyframes error {
+    0% {
+        top: 0;
+    }
+    20% {
+        top: 4vh;
+    }
+    80% {
+        top: 4vh;
+    }
+    100% {
+        top: -100%;
+    }
 }
 
 .Error p {

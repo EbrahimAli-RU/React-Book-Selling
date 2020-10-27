@@ -1,0 +1,58 @@
+.ImageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 90%;
+    height: 210px;
+    background-color: rgb(255, 255, 255);
+    margin: 0 5% 8px;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px 0 rgba(60,64,67,0.302), 0 1px 1px 0px rgba(60,64,67,0.149);
+}
+
+
+.ImageContainer img {
+    width: 140px;
+    height: 180px;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
+}
+
+.ImageContainer button {
+    padding: 12px 100px; 
+    border: none;
+    background-color: rgba(47, 217, 223, 0.932);  
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: .9rem;
+    box-shadow: 0 1px 1px 0 rgba(60,64,67,0.302), 0 1px 1px 0px rgba(60,64,67,0.149);
+
+}
+
+.ImageContainer button:focus,
+.ImageContainer button:active,
+.ImageContainer button:hover {
+    border: none;
+    outline: none;
+    background-color: rgba(151, 240, 243, 0.932);
+}
+
+@media (max-width:400px) {
+    .ImageContainer {
+        width: 100%;
+        height: 180px;
+        margin: 4px 0;
+    }
+    .ImageContainer img {
+        width: 130px;
+        height: 160px;
+    }
+    .ImageContainer button {
+        padding: 8px 16px;
+    }
+}
+@media (min-width:401px) and (max-width: 700px) {
+    .ImageContainer button {
+        padding: 8px 40px;
+    }
+}

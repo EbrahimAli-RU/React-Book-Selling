@@ -1,15 +1,14 @@
 import React from 'react'
-import NavDetailButton from '../NavDetailButton/NavDetailButton'
-import Classes from './NavDetail.css'
-import NavPhone from '../NavPhone/NavPhone'
-import Hambarge from '../../UI/Hambarg/Hambarg'
 
-const NavDetail = (props) => {
+import Classes from './Navigation.css'
+import Hambarge from '../../UI/Hambarg/Hambarg'
+import NavDetailButton from '../../Detail/NavDetailButton/NavDetailButton'
+
+const Navigation = (props) => {
     return (
         <div className={Classes.NavDetail}>
             <div className={Classes.Div1}>
                 <Hambarge clicked={props.Clicked} />
-                <NavPhone phone={props.owner.phone} />
             </div>
             <div className={Classes.Div2}>
                 <NavDetailButton />
@@ -18,4 +17,4 @@ const NavDetail = (props) => {
     )
 }
 
-export default NavDetail
+export default Navigation

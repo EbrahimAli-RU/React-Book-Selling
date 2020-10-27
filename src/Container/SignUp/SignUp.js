@@ -1,76 +1,25 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import { connect } from 'react-redux'
+
 import Classes from './SignUp.css'
-import Input from '../../Component/UI/Input/Input' //'../UI/Input/Input'
+import Input from '../../Component/UI/Input/Input'
 import SubmitButton from '../../Component/UI/SubmitButton/SubmitButton'
+import * as signUp from '../../utils/signUpState'
+import * as actionType from '../../Store/actions/auth'
+import Spinner from '../../Component/UI/Spinner/circleSpinner/circleSpinner'
+import Auxilary from '../../hoc/Auxilary'
+import Error from '../../Component/UI/Error/Error'
 
 class SignUp extends Component {
     state = {
-        SignUpForm: {
-            firstName: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'First name'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                },
-                valid: false,
-                isTouched: false
-            },
-            lastName: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'last name'
-                },
-                validation: {},
-                value: ''
-            },
-            phone: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Your Phone number'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    length: 11
-                },
-                valid: false,
-                isTouched: false
-            },
-            password: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'password',
-                    placeholder: 'password'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 8
-                },
-                valid: false
-            },
-            confirmPassword: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'password',
-                    placeholder: 'Confirm Password'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 8
-                },
-                valid: false
-            }
-        },
+        SignUpForm: null,
         isDisabled: true
+    }
+
+    componentDidMount() {
+        this.setState({
+            SignUpForm: signUp.signUp()
+        })
     }
 
     checkValidity = (value, rules) => {
@@ -84,9 +33,6 @@ class SignUp extends Component {
         if (rules.minLength) {
             isvalid = value.length >= 8;
         }
-        if (rules.length) {
-            isvalid = value.length === 11 && value.startsWith('01')
-        }
 
         return isvalid
     }
@@ -97,17 +43,15 @@ class SignUp extends Component {
         for (let key in this.state.SignUpForm) {
             formData[key] = this.state.SignUpForm[key].value
         }
-        axios.post('/user/signup', { ...formData }, {
-            headers: {
-                contentType: 'application/json'
-            }
-        }).then(res => {
-            if (res.data.status === "success") {
-                this.props.history.push("/")
-            }
-        }).catch(err => {
-            alert(err.response.data.message)
-        })
+        let pro = this.props;
+        this.props.onSignUpHandler(formData, pro, '/user/signup')
+        // axios.post('/user/signup', { ...formData }).then(res => {
+        //     if (res.data.status === "success") {
+        //         this.props.history.push("/")
+        //     }
+        // }).catch(err => {
+        //     alert(err.response.data.message)
+        // })
     }
 
     inputHandler = (e, inputIdentifyer) => {
@@ -127,7 +71,7 @@ class SignUp extends Component {
 
     Checkdisibility(g) {
         let isDis = true;
-        if (g.phone.valid && g.password.valid && g.password.valid && g.confirmPassword.valid) {
+        if (g.email.valid && g.password.valid && g.firstName.valid && g.confirmPassword.valid) {
             isDis = false;
         }
         return isDis;
@@ -152,26 +96,42 @@ class SignUp extends Component {
                     value={el.config.value} />)
         })
         return (
-            <div className={Classes.gg}>
-                <div className={Classes.Signup}>
-                    <h1 style={{
-                        position: 'relative',
-                        marginTop: '15%',
-                        marginBottom: '4vh',
-                        textAlign: 'center'
-                    }}>Book Selling </h1>
-                    <h2 style={{
-                        marginBottom: '12%',
-                        textAlign: 'center'
-                    }}><i>Wellcome</i></h2>
-                    <form onSubmit={this.SubmitHandler}>
-                        {Form}
-                        <SubmitButton name="Sign Up" Checkdisibility={this.state.isDisabled} />
-                    </form>
+            <Auxilary>
+                {this.props.error ? <Error Error={this.state.error} data={this.props.error.message} /> : null}
+                <div className={Classes.gg}>
+                    <div className={Classes.Signup}>
+                        <h1 style={{
+                            position: 'relative',
+                            marginTop: '15%',
+                            marginBottom: '4vh',
+                            textAlign: 'center'
+                        }}>Book Selling </h1>
+                        <h2 style={{
+                            marginBottom: '12%',
+                            textAlign: 'center'
+                        }}><i>Wellcome</i></h2>
+                        {this.props.loading ? <Spinner /> : <form onSubmit={this.SubmitHandler}>
+                            {Form}
+                            <SubmitButton name="Sign Up" Checkdisibility={this.state.isDisabled} />
+                        </form>}
+                    </div>
                 </div>
-            </div>
+            </Auxilary>
         )
     }
 }
 
-export default SignUp
+const mapStateToProps = state => {
+    return {
+        loading: state.loading,
+        error: state.error
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onSignUpHandler: (formData, propsPropertie, url) => dispatch(actionType.auth(formData, propsPropertie, url))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

@@ -1,5 +1,5 @@
 .Header {
-    height: 50px;
+    height: 60px;
     width: 100%;
     display: flex;
     background-color: white;
@@ -43,7 +43,7 @@
 }
 .SearchBox input {
     width: 78%;
-    height: 65%;
+    height: 70%;
     padding: 0 10px;
     border-top: 2px solid red;
     border-left: 2px solid red;
@@ -68,7 +68,7 @@
 }
 .SearchBox1 input {
     width: 78%;
-    height: 65%;
+    height: 70%;
     padding: 0 10px;
     border-top: 2px solid red;
     border-left: 2px solid red;
@@ -81,7 +81,7 @@
 
 .Searchbtn {
     cursor: pointer;
-    height: 65%;
+    height: 70%;
     display: flex;
     text-decoration: none;
     color: white;
@@ -102,7 +102,7 @@
     color: white;
 } */
 .Header button {
-    padding: 6px 30px;
+    padding: 8px 30px;
     font-size: 16px;
     color: black;
     background-color: white;
@@ -150,6 +150,7 @@
     .Header {
         position: sticky;
         top: 0;
+        z-index: 450;
     }
 }
 @media (max-width:720px) {

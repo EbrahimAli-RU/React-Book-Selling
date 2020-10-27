@@ -7,17 +7,17 @@ import Auxilary from '../../../hoc/Auxilary'
 
 const SideDrawer = (props) => {
     let manageSideDrawer = [Classes.SideDrawer, Classes.Close]
-        if(props.show) {
-            manageSideDrawer=[Classes.SideDrawer, Classes.Open]
-        }
+    if (props.show) {
+        manageSideDrawer = [Classes.SideDrawer, Classes.Open]
+    }
     return (
         <Auxilary>
-             <BackDrop show={props.show} clicked={props.close}/>
+            <BackDrop show={props.show} clicked={props.close} />
             <div className={manageSideDrawer.join(' ')}>
                 <Link to='/'>Home</Link>
                 <Link to="/login">Login</Link>
                 <Link to="/signup">SignUp</Link>
-                <Link to="/sell-your-books">Sell your Books</Link>
+                <Link to="/sell-your-book">Sell your Books</Link>
                 <Link to="/wishlist">Wish List</Link>
             </div>
         </Auxilary>

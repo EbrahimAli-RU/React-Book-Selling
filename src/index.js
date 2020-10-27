@@ -4,15 +4,18 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios'
+import { Provider } from 'react-redux'
+import store from './Store/store'
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api/v1'
-// axios.defaults.headers.common['Authorization'] = 'AUTH_TOKEN';
-// axios.defaults.headers.post['Content-type'] = 'application/json';
+axios.defaults.headers.common = { 'Authorization': `Bearer ${store.getState().token}` }
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
@@ -20,3 +23,4 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+

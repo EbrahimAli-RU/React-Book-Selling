@@ -12,7 +12,8 @@
 .Signup {
     width: 400px;
     height: 80vh;
-    background-color: #f1f1f1;
+    /* background-color: white; */
+    background: #f1f1f1;
     border-radius: 6px;
     box-sizing: border-box;
     text-align: center;

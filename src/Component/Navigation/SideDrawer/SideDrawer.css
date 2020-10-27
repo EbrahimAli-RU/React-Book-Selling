@@ -33,7 +33,7 @@
         font-size: 16px;
     }
 }
-@media (min-width:1091px) {
+@media (min-width:1090px) {
     .SideDrawer {
         display: none;
     }

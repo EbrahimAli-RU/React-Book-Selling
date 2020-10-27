@@ -10,17 +10,18 @@ import User from './User/User'
 
 const NavigationItems = (props) => (
     <Auxilary>
-        <NavigationItem clicked={props.showSideDrawer}/>
-        <SearchBox 
+        <NavigationItem clicked={props.showSideDrawer} />
+        <SearchBox
             SearchBoxName={props.navDivName}
             query={props.queryLength}
             SearchBoxButton={props.navSearchButton}
             findBook={props.searchBook}
             clicked={props.clicked}
-            />
-        <WishList cla={props.wish}/>
-        <NavButton SellBook={props.sellBook}/>
-        <User User={props.user}/>
+        />
+        <WishList cla={props.wish} />
+        <NavButton SellBook={props.sellBook}
+            token={props.token} />
+        <User User={props.user} />
     </Auxilary>
 )
 export default NavigationItems

@@ -1,10 +1,8 @@
 .Input {
-    /* position: relative; */
     box-sizing: border-box;
     outline: none;
     border: none;
     font-size: .9rem;
-    /* left: 10%; */
     border-radius: 4px;
     width: 80%;
     height: 5vh;
