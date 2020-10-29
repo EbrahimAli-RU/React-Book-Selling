@@ -38,6 +38,7 @@ export const addToWishList = (id, token) => {
             dispatch(showSuccessfullMessage(res.data.message));
             dispatch(closeError())
         }).catch(err => {
+            console.log(err.response.data.message)
             dispatch(showWarningMessage(err.response.data.message))
             dispatch(closeError())
         })

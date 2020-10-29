@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { connect } from 'react-redux'
 
 import * as test from '../../Check'
 import Classes from './SellBook.css'
@@ -11,6 +12,7 @@ import InputImage from '../../Component/UI/Input/InputImage/InputImage'
 import InputCopy from '../../Component/UI/Input/InputCopy/Input'
 import SubmitButton from '../../Component/UI/SubmitButton/SubmitButton'
 import Footer from '../../Component/Footer/Footer'
+import Error from '../../Component/UI/Error/Error'
 
 class SellBook extends Component {
     state = {
@@ -31,7 +33,8 @@ class SellBook extends Component {
         },
         showSideDrawer: false,
         isDisabled: true,
-        missingPage: 'no'
+        missingPage: 'no',
+        error: null
     }
     componentDidMount() {
         this.setState({
@@ -161,10 +164,21 @@ class SellBook extends Component {
         fd.append('division', order.seller.division)
         fd.append('distict', order.seller.distict)
         fd.append('subDistict', order.seller.subDistict)
-        axios.post('http://127.0.0.1:8000/api/v1/book', fd).then(res => {
+        let token = this.props.token
+        axios.post('http://127.0.0.1:8000/api/v1/book', fd, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => {
             console.log(res.data.data)
         }).catch(err => {
-            console.log(err.response.data)
+            console.log(err.response.data.message)
+            this.setState({ error: err.response.data })
+            setTimeout(() => {
+                this.setState({
+                    error: null
+                })
+            }, 1500)
         })
         console.log(order);
         // this.props.onOrderBurger(order, this.props.token);
@@ -264,12 +278,13 @@ class SellBook extends Component {
 
         return (
             <Auxilary>
+                {this.state.error ? <Error show data={this.state.error.message} /> : null}
                 <SideDrawer
                     show={this.state.showSideDrawer}
                     close={this.closeSideDrawerHandler} />
                 <Navigation Clicked={this.showSideDrawerHandler} />
                 <div className={Classes.Container}>
-                    <form >
+                    <form onSubmit={this.bookHandler}>
                         {aboutForm}
                         <p style={{ display: 'inline-block', marginLeft: '5%' }}>Missing page:  </p>
                         <input type="radio" id="no" name="missingPage" value="no"
@@ -283,15 +298,22 @@ class SellBook extends Component {
                         {missingPageForm}
                         <h3 style={{ marginLeft: '5%' }}>Seller</h3>
                         {sellerForm}
-                        <button onClick={this.bookHandler}>CHECK</button>
+                        {/* <button onClick={this.bookHandler}>CHECK</button> */}
                         <SubmitButton name="Submit" />
                     </form>
                 </div>
                 <Footer />
+
             </Auxilary>
         );
 
     }
 }
 
-export default SellBook;
+const mapStatetoProps = state => {
+    return {
+        token: state.auth.token,
+    }
+}
+
+export default connect(mapStatetoProps)(SellBook);
