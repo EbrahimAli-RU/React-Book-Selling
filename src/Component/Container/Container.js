@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 
-import Error from '../UI/Error/Error'
 import Auxilary from '../../hoc/Auxilary'
 import Classes from './Container.css'
 import Card from './Card/Card'

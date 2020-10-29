@@ -90,7 +90,6 @@ class Layout extends Component {
     componentDidMount() {
         axios.get(`/book?slug=${this.state.query}`)
             .then(response => {
-                console.log(response.data.data.books)
                 this.setState({ list: response.data.data.books, isFound: true })
             }).catch(err => {
                 console.log(err.response)

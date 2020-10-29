@@ -37,19 +37,9 @@ export const addToWishList = (id, token) => {
         }).then(res => {
             dispatch(showSuccessfullMessage(res.data.message));
             dispatch(closeError())
-            // this.setState({ success: true, message: res.data.message })
-            // setTimeout(() => {
-            //     this.setState({ success: false, message: null })
-            // }, 1000)
-            // console.log(res.data.message)
         }).catch(err => {
             dispatch(showWarningMessage(err.response.data.message))
             dispatch(closeError())
-            // this.setState({ error: true, message: err.response.data.message })
-            // setTimeout(() => {
-            //     this.setState({ error: false, message: null })
-            // }, 1000)
-            // console.log(err.response.data)
         })
 
     }

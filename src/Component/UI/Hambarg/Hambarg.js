@@ -36,7 +36,6 @@ const Hambarge = (props) => {
             className="fa fa-bars fa-2x"
             aria-hidden="true" onClick={props.clicked}></i>)
     }
-    console.log(height, width);
     return (
         <Auxilary>
             {selectButton}
