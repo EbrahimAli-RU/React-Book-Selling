@@ -1,15 +1,15 @@
 .Error {
-    top: -100%;
+    top: 4vh;
     left: 30%;
     background-color: #bb2124;
     width: 40%;
     min-height: 4vh;
-    position: absolute;
+    position: fixed;
+    /* opacity: 0; */
     z-index: 600;
     border-radius: 8px;
-    transition: transform .5s;
     animation-name: error;
-    animation-duration: 2s;
+    animation-duration: 2.5s;
 }
 
 @keyframes error {
@@ -32,15 +32,6 @@
     text-align: center;
     font-size: 18px;
 }
-
-/* .Open {
-    transform: translateY(0vh);
-}
-
-.Close {
-    transform: translateY(-100vh);
-} */
-
 @media (max-width: 450px) {
     .Error {
         width: 80%;

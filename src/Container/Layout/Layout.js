@@ -175,9 +175,11 @@ class Layout extends Component {
         })
         return (
             <Auxilary>
+                {this.props.error ? <Error show data={this.props.message} /> : null}
+                {this.props.success ? <Error show data={this.props.message} /> : null}
                 { this.state.isFound ? <Auxilary>
                     {this.state.showSpinner ? <Spinner /> : null}
-                    {this.state.error ? <Error Error={this.state.error} data="Search box is empty" /> : null}
+                    {this.state.error ? <Error show={this.state.error} data="Search box is empty" /> : null}
                     <header className={Classes.Header}>
                         <NavigationItems navDivName={Classes.SearchBox1}
                             navSearchButton={Classes.Searchbtn}
@@ -240,7 +242,10 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
     return {
-        token: state.token
+        token: state.auth.token,
+        success: state.wishList.success,
+        error: state.wishList.error,
+        message: state.wishList.message,
     }
 }
 

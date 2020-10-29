@@ -117,7 +117,7 @@ class SignIn extends Component {
         })
         return (
             <Auxilary>
-                {this.props.error ? <Error Error={this.state.error} data={this.props.error.message} /> : null}
+                {this.props.error ? <Error show data={this.props.error.message} /> : null}
                 <div className={Classes.gg}>
                     <div className={Classes.SignIn}>
                         <h1 style={{
@@ -144,9 +144,9 @@ class SignIn extends Component {
 }
 const mapStateToProps = state => {
     return {
-        loading: state.loading,
-        error: state.error,
-        token: state.token
+        loading: state.auth.loading,
+        error: state.auth.error,
+        token: state.auth.token
     }
 }
 

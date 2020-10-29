@@ -4,7 +4,7 @@ const initialState = {
     token: null,
     userId: null,
     error: null,
-    loading: false
+    loading: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 userId: action.userId,
                 token: action.token,
-                loading: false
+                loading: false,
             }
         case 'AUTH_FAIL':
             return {
@@ -37,8 +37,11 @@ const reducer = (state = initialState, action) => {
                 token: null,
                 error: null
             }
-
-
+        case 'SET_DEFAULT':
+            return {
+                ...state,
+                error: null,
+            }
         default:
             return state
     }

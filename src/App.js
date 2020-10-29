@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import * as tokens from './axios/base-axios'
 import Layout from './Container/Layout/Layout'
 import Detail from './Container/BookDetail/Detail'
 import SignIn from './Container/SignIn/Signin'
