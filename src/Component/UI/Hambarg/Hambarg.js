@@ -29,7 +29,7 @@ const Hambarge = (props) => {
         return windowDimensions;
     }
     const { height, width } = useWindowDimensions();
-    let selectButton = <Link to="/"><i className="fa fa-home fa-2x" style={style} aria-hidden="true"></i></Link>
+    let selectButton = <a href="/" > <i className="fa fa-home fa-2x" style={style} aria-hidden="true"></i></a>
 
     if (width < 1090) {
         selectButton = (<i style={style}

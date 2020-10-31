@@ -12,6 +12,7 @@ import Classes from './Nav.css'
 import SideDrawer from '../../Component/Navigation/SideDrawer/SideDrawer'
 import Spinner from '../../Component/UI/Spinner/Spinner'
 import Input from '../../Component/UI/Input/Input/Input'
+import * as intialState from '../../utils/layout'
 
 class Layout extends Component {
     constructor(props) {
@@ -25,56 +26,7 @@ class Layout extends Component {
             length: 0,
             error: false,
             showSpinner: false,
-            filter: {
-                division: {
-                    elementType: 'select',
-                    elementConfig: {
-                        option: [
-                            { value: "", displayValue: "Division" },
-                            { value: "dhaka", displayValue: "Dhaka" },
-                            { value: "rajshahi", displayValue: "Rajshahi" },
-                            { value: "khulna", displayValue: "Khulna" },
-                            { value: "barisal", displayValue: "Barisal" },
-                            { value: "chittagong", displayValue: "Chittagong" },
-                            { value: "mymensingh", displayValue: "Mymensingh" },
-                            { value: "rangpur", displayValue: "Rangpur" },
-                            { value: "sylhet", displayValue: "Sylhet" },
-                        ],
-                    },
-                    value: '',
-                    validation: {
-                        required: true,
-                    },
-                    valid: false,
-                    isTouched: false
-                },
-                distict: {
-                    elementType: 'input',
-                    elementConfig: {
-                        type: 'text',
-                        placeholder: 'Distict'
-                    },
-                    value: '',
-                    validation: {
-                        required: true,
-                    },
-                    valid: false,
-                    isTouched: false
-                },
-                subDivision: {
-                    elementType: 'input',
-                    elementConfig: {
-                        type: 'text',
-                        placeholder: 'Sub-Distict'
-                    },
-                    value: '',
-                    validation: {
-                        required: true,
-                    },
-                    valid: false,
-                    isTouched: false
-                },
-            }
+            filter: null,
         }
         this.cancel = ''
     }
@@ -88,6 +40,7 @@ class Layout extends Component {
         this.setState({ showSideDrawer: false })
     }
     componentDidMount() {
+        this.setState({ filter: intialState.layout() })
         axios.get(`/book?slug=${this.state.query}`)
             .then(response => {
                 this.setState({ list: response.data.data.books, isFound: true })
@@ -102,8 +55,6 @@ class Layout extends Component {
         query = query.trim();
         query = query.replace(/\s+/g, ' ').trim();
         this.setState({ query }, () => {
-            // this.fetchDataFromApi(query)
-            // console.log(query)
         });
 
 
@@ -119,12 +70,7 @@ class Layout extends Component {
             this.cancel.cancel();
         }
         this.cancel = axios.CancelToken.source();
-        axios.get(searchURL, {
-            params: {
-                _limit: 1
-            },
-            cancelToken: this.cancel.token
-        }).then(response => {
+        axios.get(searchURL).then(response => {
 
             setTimeout(() => {
                 this.setState({
@@ -133,7 +79,7 @@ class Layout extends Component {
                     length: response.data.data.books.length,
 
                 })
-            }, 100)
+            }, 500)
         }).catch(err => {
             console.log('Error')
         })
@@ -201,15 +147,7 @@ class Layout extends Component {
                         show={this.state.showSideDrawer}
                         close={this.closeSideDrawerHandler} />
                     <main style={{ display: 'flex' }}>
-                        <div style={{
-                            display: 'flex',
-                            width: '25%',
-                            justifyContent: 'flex-start',
-                            flexDirection: 'column',
-                            backgroundColor: '#cccccc',
-                            // height: '90vh',
-                            overflow: 'hidden'
-                        }}>
+                        <div className={Classes.MainLeft}>
                             <h2>Filter</h2>
                             {Form}
                             <h2>Sort By:</h2>
@@ -222,12 +160,7 @@ class Layout extends Component {
                                 <label htmlFor="edition">Edition</label>
                             </div>
                         </div>
-                        <Container style={{
-                            display: 'flex',
-                            width: '70%',
-                            justifyContent: 'flex-start',
-                            overflow: 'auto'
-                        }} list={this.state.list} length={this.state.length} />
+                        <Container className={Classes.Container} list={this.state.list} length={this.state.length} />
                     </main>
                     <footer>
                         <Footer />

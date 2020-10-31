@@ -45,13 +45,6 @@ class SignUp extends Component {
         }
         let pro = this.props;
         this.props.onSignUpHandler(formData, pro, '/user/signup')
-        // axios.post('/user/signup', { ...formData }).then(res => {
-        //     if (res.data.status === "success") {
-        //         this.props.history.push("/")
-        //     }
-        // }).catch(err => {
-        //     alert(err.response.data.message)
-        // })
     }
 
     inputHandler = (e, inputIdentifyer) => {
@@ -66,7 +59,6 @@ class SignUp extends Component {
         this.setState({ SignUpForm: UpdatedSignupForm })
         const isDis = this.Checkdisibility(UpdatedSignupForm);
         this.setState({ isDisabled: isDis })
-        // this.setState({ SignUpForm: UpdatedSignupForm})
     }
 
     Checkdisibility(g) {
@@ -100,16 +92,8 @@ class SignUp extends Component {
                 {this.props.error ? <Error show data={this.props.error.message} /> : null}
                 <div className={Classes.gg}>
                     <div className={Classes.Signup}>
-                        <h1 style={{
-                            position: 'relative',
-                            marginTop: '15%',
-                            marginBottom: '4vh',
-                            textAlign: 'center'
-                        }}>Book Selling </h1>
-                        <h2 style={{
-                            marginBottom: '12%',
-                            textAlign: 'center'
-                        }}><i>Wellcome</i></h2>
+                        <h1 className={Classes.HeadingBookSelling}>Book Selling </h1>
+                        <h2 className={Classes.WellComeHeading}><i>Wellcome</i></h2>
                         {this.props.loading ? <Spinner /> : <form onSubmit={this.SubmitHandler}>
                             {Form}
                             <SubmitButton name="Sign Up" Checkdisibility={this.state.isDisabled} />
