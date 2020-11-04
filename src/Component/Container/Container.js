@@ -6,12 +6,14 @@ import Classes from './Container.css'
 import Card from './Card/Card'
 import NoDataFound from './NoDataFound/NoDataFound'
 import * as action from '../../Store/actions/index'
+import Error from '../UI/Error/Error'
 
 class Container extends Component {
     state = {
         success: false,
         error: false,
-        message: null
+        message: null,
+        detail: false
     }
 
     openDetailPage = (id) => {
@@ -21,6 +23,9 @@ class Container extends Component {
         //     console.log(err)
         // }) 
     }
+    detailHandler = () => {
+        this.setState({ detail: true })
+    }
 
     searchButtonHandler = () => {
 
@@ -29,25 +34,7 @@ class Container extends Component {
         // e.preventDefault();
         const token = this.props.isAuthenticate;
         this.props.onAddedToWishList(id, token)
-        // console.log(this.state.error, this.state.success, id)
-        // this.setState({ success: false, error: false })
-        // axios.post('/user/addWishList', { id: id }, {
-        //     headers: {
-        //         Authorization: `Bearer ${this.props.isAuthenticate}`
-        //     }
-        // }).then(res => {
-        //     this.setState({ success: true, message: res.data.message })
-        //     setTimeout(() => {
-        //         this.setState({ success: false, message: null })
-        //     }, 1000)
-        //     console.log(res.data.message)
-        // }).catch(err => {
-        //     this.setState({ error: true, message: err.response.data.message })
-        //     setTimeout(() => {
-        //         this.setState({ error: false, message: null })
-        //     }, 1000)
-        //     console.log(err.response.data)
-        // })
+
     }
     render() {
 

@@ -71,7 +71,6 @@ class Layout extends Component {
         }
         this.cancel = axios.CancelToken.source();
         axios.get(searchURL).then(response => {
-
             setTimeout(() => {
                 this.setState({
                     showSpinner: false,
@@ -87,7 +86,6 @@ class Layout extends Component {
 
     searchForBook = () => {
         if (this.state.query.length === 0) {
-            // alert('Search Box is Empty!');
             this.setState({ error: true })
             setTimeout(() => {
                 this.setState({ error: false })
